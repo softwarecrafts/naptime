@@ -1,0 +1,12 @@
+{
+    "dev": {
+        "aws_region": "eu-west-1",
+        "django_settings": "snooze-api.api.app.app",
+        "profile_name": "default",
+        "s3_bucket": "zappa-5q5b3gchk",
+        "events": [{
+           "function": "snooze_api.api.tasks.journey_snooze",
+           "expression": "cron(0 3 * * THU *)" 
+       }]
+    }
+}
