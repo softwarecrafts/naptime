@@ -18,7 +18,7 @@
 
 
 from chalice import Chalice, Cron
-from .api.backend.slack import DoNotDisturb
+from slack import DoNotDisturb
 
 app = Chalice(app_name='snooze-api')
 
