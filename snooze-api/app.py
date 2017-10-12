@@ -28,8 +28,8 @@ def index():
     return {'hello': 'world'}
 
 
-@app.schedule(Cron(0, 2, '?', '*', 'THU', '*'))
+@app.schedule(Cron(55, 8, '?', '*', 'THU', '*'))
 def journey_snooze(event):
-    hours = 24
+    hours = 1
     minutes = hours * 60
     DoNotDisturb().set_snooze(minutes)

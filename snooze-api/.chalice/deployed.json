@@ -2,7 +2,12 @@
   "dev": {
     "api_handler_name": "snooze-api-dev",
     "api_handler_arn": "arn:aws:lambda:eu-west-1:326008013803:function:snooze-api-dev",
-    "lambda_functions": {},
+    "lambda_functions": {
+      "snooze-api-dev-journey_snooze": {
+        "arn": "arn:aws:lambda:eu-west-1:326008013803:function:snooze-api-dev-journey_snooze",
+        "type": "scheduled_event"
+      }
+    },
     "backend": "api",
     "chalice_version": "1.0.3",
     "rest_api_id": "ei8fehi7bi",
