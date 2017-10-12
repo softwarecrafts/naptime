@@ -1,4 +1,0 @@
-# -*- coding: utf-8 -*-
-SUCCESS_REQUEST = 200
-CLIENT_BAD_REQUEST = 400
-SERVER_ERROR = 500

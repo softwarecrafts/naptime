@@ -18,14 +18,9 @@
 
 
 from chalice import Chalice, Cron
-from api.backend.slack import DoNotDisturb
+from .api.backend.slack import DoNotDisturb
 
 app = Chalice(app_name='snooze-api')
-
-
-@app.route('/')
-def index():
-    return {'hello': 'world'}
 
 
 @app.schedule(Cron(55, 8, '?', '*', 'THU', '*'))
