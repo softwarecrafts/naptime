@@ -18,13 +18,18 @@
 
 
 from chalice import Chalice, Cron
-from slack import DoNotDisturb
+from chalicelib.api.backend.slack import DoNotDisturb
 
 app = Chalice(app_name='snooze-api')
 
 
-@app.schedule(Cron(55, 8, '?', '*', 'THU', '*'))
+@app.route('/')
+def hello():
+    return {'hello': 'world'}
+
+
+@app.schedule(Cron(0, 2, '?', '*', 'THU', '*'))
 def journey_snooze(event):
-    hours = 1
+    hours = 24
     minutes = hours * 60
     DoNotDisturb().set_snooze(minutes)

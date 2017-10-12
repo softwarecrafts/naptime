@@ -3,6 +3,7 @@ import os
 import time
 from slackclient import SlackClient
 
+__all__ = ['DoNotDisturb']
 
 BOT_NAME = 'snooze_bot'
 EXAMPLE_COMMAND = "do"
