@@ -1,12 +1,15 @@
 '''Interactions with the Slack API'''
 import os
 import time
+import logging
 from slackclient import SlackClient
 
 __all__ = ['DoNotDisturb']
 
 BOT_NAME = 'snooze_bot'
 EXAMPLE_COMMAND = "do"
+
+logger = logging.getLogger(__name__)
 
 class DoNotDisturb(object):
     """
@@ -59,3 +62,6 @@ class DoNotDisturb(object):
         
         if api_call.get('ok'):
             return api_call
+        else:
+            logger.info('Error: %s', api_call)
+
