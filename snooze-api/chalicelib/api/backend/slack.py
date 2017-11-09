@@ -57,11 +57,14 @@ class DoNotDisturb(object):
             return api_call
             
             
-    def set_snooze(self, minutes):
+    def set_snooze(self, minutes, app=None):
         api_call = self.slack_client.api_call("dnd.setSnooze", num_minutes=minutes)
         
         if api_call.get('ok'):
             return api_call
         else:
-            logger.info('Error: %s', api_call)
+            if app:
+                app.log.info('Error: %s', api_call)
+            else:
+                logger.info('Error: %s', api_call)
 

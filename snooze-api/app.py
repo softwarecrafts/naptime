@@ -32,4 +32,4 @@ def hello():
 def journey_snooze(event):
     hours = 24
     minutes = hours * 60
-    DoNotDisturb().set_snooze(minutes)
+    DoNotDisturb().set_snooze(minutes, app=app)
