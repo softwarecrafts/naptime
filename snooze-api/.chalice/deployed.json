@@ -6,6 +6,10 @@
       "snooze-api-dev-journey_snooze": {
         "arn": "arn:aws:lambda:eu-west-1:326008013803:function:snooze-api-dev-journey_snooze",
         "type": "scheduled_event"
+      },
+      "snooze-api-dev-wake_up": {
+        "arn": "arn:aws:lambda:eu-west-1:326008013803:function:snooze-api-dev-wake_up",
+        "type": "scheduled_event"
       }
     },
     "backend": "api",
