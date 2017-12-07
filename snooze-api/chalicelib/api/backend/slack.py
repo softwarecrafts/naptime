@@ -24,7 +24,8 @@ class DoNotDisturb(object):
             Slack Client
         """
         self.slack_client = SlackClient(os.environ.get('SLACK_USER_TOKEN'))
-        self.bot_id = os.environ.get("BOT_ID")
+        # self.bot_id = os.environ.get("BOT_ID")
+        self.bot_id = self.get_name()
         self.at_bot = f"<@{self.bot_id}>"
 
     @staticmethod
@@ -46,12 +47,12 @@ class DoNotDisturb(object):
             users = api_call.get('members')
             for user in users:
                 if 'name' in user and user.get('name') == BOT_NAME:
-                    return f"Bot ID for '{user['name']}' is {user.get('id')}"
+                    return user.get('id')
             else:
-                return f"""Processed all users, couldn't find {BOT_NAME}.""", \
-                        f"""I found {[u.get('name') for u in users]}"""
+                raise Exception(f"""Processed all users, couldn't find {BOT_NAME}.""", \
+                        f"""I found {[u.get('name') for u in users]}""")
         else:
-            return f"could not find bot user with the name {BOT_NAME}"
+            raise Exception(f"could not find bot user with the name {BOT_NAME}")
 
     def get_team_dnd(self):
         api_call = self.slack_client.api_call("dnd.teamInfo")
