@@ -52,7 +52,7 @@ class DoNotDisturb(object):
                 raise Exception(f"""Processed all users, couldn't find {BOT_NAME}.""", \
                         f"""I found {[u.get('name') for u in users]}""")
         else:
-            raise Exception(f"could not find bot user with the name {BOT_NAME}")
+            raise Exception(api_call)
 
     def get_team_dnd(self):
         api_call = self.slack_client.api_call("dnd.teamInfo")
