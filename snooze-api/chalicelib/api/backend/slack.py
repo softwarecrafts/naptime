@@ -7,9 +7,9 @@ from slackclient import SlackClient
 __all__ = ['DoNotDisturb']
 
 BOT_NAME = 'snooze_bot'
-EXAMPLE_COMMAND = "do"
 
 logger = logging.getLogger(__name__)
+
 
 class DoNotDisturb(object):
     """
@@ -27,6 +27,17 @@ class DoNotDisturb(object):
         self.bot_id = os.environ.get("BOT_ID")
         self.at_bot = f"<@{self.bot_id}>"
 
+    @staticmethod
+    def _process_response(api_call):
+        if api_call.get('ok'):
+            return api_call
+        else:
+            raise Exception(api_call)
+            # if app:
+            #     app.log.info('Error: %s', api_call)
+            # else:
+            #     logger.info('Error: %s', api_call)
+
     def get_name(self):
         'returns the bot name'
         api_call = self.slack_client.api_call("users.list")
@@ -41,30 +52,23 @@ class DoNotDisturb(object):
                         f"""I found {[u.get('name') for u in users]}"""
         else:
             return f"could not find bot user with the name {BOT_NAME}"
-            
-            
+
     def get_team_dnd(self):
         api_call = self.slack_client.api_call("dnd.teamInfo")
-        
+
         if api_call.get('ok'):
             return api_call.get('users')
-            
-            
+
     def get_dnd(self):
         api_call = self.slack_client.api_call("dnd.info")
-        
+
         if api_call.get('ok'):
             return api_call
-            
-            
+
     def set_snooze(self, minutes, app=None):
         api_call = self.slack_client.api_call("dnd.setSnooze", num_minutes=minutes)
-        
-        if api_call.get('ok'):
-            return api_call
-        else:
-            if app:
-                app.log.info('Error: %s', api_call)
-            else:
-                logger.info('Error: %s', api_call)
+        return self._process_response(api_call)
 
+    def set_presence(self, presence='auto'):
+        api_call = self.slack_client.api_call('users.setPresence', presence=presence)
+        return self._process_response(api_call)

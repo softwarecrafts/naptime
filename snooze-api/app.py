@@ -32,4 +32,14 @@ def hello():
 def journey_snooze(event):
     hours = 24
     minutes = hours * 60
-    DoNotDisturb().set_snooze(minutes, app=app)
+    status = 'away'
+    client = DoNotDisturb()
+    client.set_snooze(minutes, app=app)
+    client.set_presence(status)
+
+
+@app.schedule(Cron(0, 3, '?', '*', 'FRI', '*'))
+def wake_up(event):
+    status = 'auto'
+    client = DoNotDisturb()
+    client.set_presence(status)
