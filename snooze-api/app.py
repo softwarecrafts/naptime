@@ -1,26 +1,9 @@
-# from flask import Flask
-# from flask_restful import Api
-# from flask_appconfig import AppConfig
-# from flask_sqlalchemy import SQLAlchemy
-# 
-# import os
-# 
-# basedir = os.path.abspath(os.path.dirname(__file__))
-# 
-# app = Flask('snooze-api')
-# app = Flask(__name__.split('.')[0])
-# api = Api(app)
-# AppConfig(app, os.path.join(basedir, 'default_config.py'))
-# db = SQLAlchemy(app)
-# 
-# from . import models
-# from .views import  donotdisturb
-
-
 from chalice import Chalice, Cron
-from chalicelib.api.backend.slack import DoNotDisturb
+from chalicelib.backend.slack import DoNotDisturb
+from chalicelib.tasks.manager import read_yaml_data_file, setup_snooze_functions, create_cron, calculate_wake_cron
 
 app = Chalice(app_name='snooze-api')
+CURRENT_VERSION = 1.0
 
 
 @app.route('/')
@@ -43,3 +26,14 @@ def wake_up(event):
     status = 'auto'
     client = DoNotDisturb()
     client.set_presence(status)
+
+
+def main():
+    data = read_yaml_data_file('../data/recurring.yml')
+    if data.get('version') < CURRENT_VERSION:
+        raise EnvironmentError('Data file version is out of date, please update file manually')
+    for item in data.get('data'):
+        snooze_func, wake_func = setup_snooze_functions(item)
+        snooze_cron, wake_cron = item.get('cron'), calculate_wake_cron(item)
+        app.schedule(create_cron(snooze_cron))(snooze_func)
+        app.schedule(create_cron(wake_cron))(snooze_func)

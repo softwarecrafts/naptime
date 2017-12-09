@@ -1,0 +1,26 @@
+version: 1.0
+data:
+    - name: thursdays
+      away: true
+      duration: 
+        unit: hours
+        length: 24
+      cron:
+        minutes: 0
+        hours: 2
+        day_of_month: '?'
+        month: '*'
+        day_of_week: 'THU'
+        year: '*'
+    - name: weekend
+      away: true
+      duration: 
+        unit: hours
+        length: 48
+      cron:
+        minutes: 0
+        hours: 2
+        day_of_month: '?'
+        month: '*'
+        day_of_week: 'SAT'
+        year: '*'
