@@ -36,4 +36,4 @@ def main():
         snooze_func, wake_func = setup_snooze_functions(item)
         snooze_cron, wake_cron = item.get('cron'), calculate_wake_cron(item)
         app.schedule(create_cron(snooze_cron))(snooze_func)
-        app.schedule(create_cron(wake_cron))(snooze_func)
+        app.schedule(create_cron(wake_cron))(wake_func)

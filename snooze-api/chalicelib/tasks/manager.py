@@ -15,8 +15,10 @@ def create_cron(data):
 
 
 def calculate_wake_cron(data):
-    # hmmm....
-    pass
+    # hmmm.... TODO
+    # need the next datetime of the cron data, then need to add the duration as a timedelta
+    # then need to convert that datetime back to the cron format?!?!?!?!
+    return Cron(**data)
 
 
 def get_minutes(duration):
