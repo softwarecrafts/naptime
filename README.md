@@ -1,4 +1,4 @@
-# snoozebot
+# naptime
 
 Zzzzzz......
 
