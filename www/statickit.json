@@ -1,0 +1,20 @@
+{
+  "forms": {
+    "heroNotifyForm": {
+      "name": "Hero Notify Form",
+      "actions": [{
+        "app": "convertkit",
+        "type": "applyTags",
+        "tags": ["website", "early-access", "hero-section"]
+      }]
+    },
+    "newsletterNotifyForm": {
+      "name": "Newsletter Notify Form",
+      "actions": [{
+        "app": "convertkit",
+        "type": "applyTags",
+        "tags": ["website", "early-access", "newsletter-section"]
+      }]
+    }
+  }
+}

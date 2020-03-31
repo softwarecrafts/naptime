@@ -106,3 +106,5 @@ venv.bak/
 snooze-api/.chalice/deployments/
 snooze-api/.chalice/venv/
 
+node_modules/
+www/public/
