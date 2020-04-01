@@ -3,7 +3,7 @@
 import React from "react";
 import { useForm, ValidationError } from '@statickit/react';
 
-const SignUp = ({ siteTitle }) => {
+const SignUp = () => {
     const [state, handleSubmit] = useForm("newsletterNotifyForm");
 
     return (
@@ -27,7 +27,6 @@ const SignUp = ({ siteTitle }) => {
             className="appearance-none w-full px-5 py-3 border border-transparent text-base leading-6 rounded-md text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 transition duration-150 ease-in-out sm:max-w-xs"
             placeholder="Enter your email"
             id="email"
-            type="email"
             name="email"
           />
           <ValidationError

@@ -12,7 +12,7 @@ const Header = () => {
                 href="/"
                 className="text-2xl text-gray-900 ml-3 py-2 px-4 font-hairline"
               >
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="text-midnight-700 inline w-6 h-6 mx-1"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="text-midnight-700 inline w-6 h-6 mx-1"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 <span className="font-serif text-midnight-700 font-bold">nap</span>
                 time.app
               </a>
@@ -68,7 +68,7 @@ const Header = () => {
                   href="/"
                   className="text-2xl text-gray-900 ml-3 py-2 px-4 font-hairline"
                 >
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="text-midnight-700 inline w-6 h-6 mx-1"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="text-midnight-700 inline w-6 h-6 mx-1"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                   <span className="font-serif text-midnight-700 font-bold">
                     nap
                   </span>
