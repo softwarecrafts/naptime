@@ -1,10 +1,8 @@
 # Website
 
-
 ## todo
 
-* fix build
-* dark mode (time based?)
+* dark mode (time based - would be fun) - toggle the logo with a sun as well
 
 
 

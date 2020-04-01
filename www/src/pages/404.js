@@ -25,7 +25,7 @@ const NotFoundPage = () => (
     <SEO title="404: Not found" />
     <div className="text-lg text-center my-10">
         <h3 className="font-hairline text-3xl">We lost you!</h3>
-        <br/> Returning to our <a className="hover:underline text-midnight-500" href="">Homepage</a> will get you back in the right direction!
+        <br/> Returning to our <a className="hover:underline text-midnight-500" href="/">Homepage</a> will get you back in the right direction!
     </div>
   </Layout>
 )
