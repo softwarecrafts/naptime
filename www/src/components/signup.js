@@ -36,7 +36,7 @@ const SignUp = ({ siteTitle }) => {
             errors={state.errors}
           />
           <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-            <button type="submit" className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:bg-indigo-400 transition duration-150 ease-in-out" disabled={state.submitting}>
+            <button type="submit" className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-midnight-500 hover:bg-midnight-400 focus:outline-none focus:bg-midnight-400 transition duration-150 ease-in-out" disabled={state.submitting}>
               Notify me
             </button>
           </div>

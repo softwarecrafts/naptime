@@ -91,7 +91,7 @@ const Hero = ({ children }) => {
               <span className="line-through text-gray-900">Tada!</span>
               {` `}
               <br className="hidden md:inline" />
-              <span className="text-indigo-600 font-serif font-extrabold">
+              <span className="text-midnight-600 font-serif font-extrabold">
                 Controlling your digital life?
               </span>
             </h2>
@@ -102,7 +102,7 @@ const Hero = ({ children }) => {
             </p>
             <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               {/*<div className="rounded-md shadow">
-                <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-midnight-600 hover:bg-midnight-500 focus:outline-none focus:shadow-outline-midnight transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                   Get Notified
                 </a>
               </div>*/}
@@ -146,7 +146,7 @@ const Hero = ({ children }) => {
                 </>}
               </div>
               {/*<div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline-blue transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-midnight-600 bg-white hover:text-midnight-500 focus:outline-none focus:shadow-outline-blue transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                   Live demo
                 </a>
               </div>*/}

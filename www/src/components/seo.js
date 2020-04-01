@@ -70,6 +70,13 @@ function SEO({ description, lang, meta, title }) {
       ].concat(meta)}
     >
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/>
+        <link rel="manifest" href="/icons/site.webmanifest"/>
+        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#a4baed"/>
+        <meta name="msapplication-TileColor" content="#a4baed"/>
+        <meta name="theme-color" content="#a4baed"/>
     </Helmet>
   )
 }

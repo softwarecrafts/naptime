@@ -18,8 +18,13 @@ const Footer = () => (
             </a>
           </div>*/}
           <div className="px-5 py-2">
+            <a href="mailto:andy@naptime.app" className="text-base leading-6 text-gray-500 hover:text-gray-900">
+              Contact
+            </a>
+          </div>
+          <div className="px-5 py-2">
             <a href="/privacy" className="text-base leading-6 text-gray-500 hover:text-gray-900">
-              Privacy
+              Privacy Policy
             </a>
           </div>
           <div className="px-5 py-2">
@@ -61,7 +66,7 @@ const Footer = () => (
         </div>
         <div className="mt-8">
           <p className="text-center text-base leading-6 text-gray-400">
-            &copy; 2020 <a className="hover:underline" href="https://softwarecrafts.uk">Software Crafts</a>. All rights reserved.
+            &copy; 2020 <a className="hover:underline" href="https://softwarecrafts.uk">Software Crafts</a>.
           </p>
         </div>
       </div>
