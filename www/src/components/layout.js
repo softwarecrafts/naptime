@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 // import { useStaticQuery, graphql } from "gatsby"
+import { useStateValue } from "../utils/state";
 
 import Header from "./header"
 import Footer from "./footer"
@@ -23,9 +24,9 @@ const Layout = ({ children, HeroComponent }) => {
   //     }
   //   }
   // `)
-
+  const [{ theme }] = useStateValue();
   return (
-    <div className="bg-gray-50">
+    <div className={theme.bg.normal}>
       <HeroComponent>
         <Header />
       </HeroComponent>
