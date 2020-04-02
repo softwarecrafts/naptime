@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { useStateValue } from "../utils/state";
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -24,6 +25,7 @@ function SEO({ description, lang, meta, title }) {
       }
     `
   )
+  const [{ theme }] = useStateValue();
 
   const metaDescription = description || site.siteMetadata.description
 
@@ -31,6 +33,7 @@ function SEO({ description, lang, meta, title }) {
     <Helmet
       htmlAttributes={{
         lang,
+        class: theme.bg.normal
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
@@ -70,11 +73,11 @@ function SEO({ description, lang, meta, title }) {
       ].concat(meta)}
     >
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/>
-        <link rel="manifest" href="/icons/site.webmanifest"/>
-        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#a4baed"/>
+        <link rel="apple-touch-icon" sizes="180x180" href={`/icons/${theme.name}/apple-touch-icon.png`}/>
+        <link rel="icon" type="image/png" sizes="32x32" href={`/icons/${theme.name}/favicon-32x32.png`}/>
+        <link rel="icon" type="image/png" sizes="16x16" href={`/icons/${theme.name}/favicon-16x16.png`}/>
+        <link rel="manifest" href={`/icons/${theme.name}/site.webmanifest`}/>
+        <link rel="mask-icon" href={`/icons/${theme.name}/safari-pinned-tab.svg`} color="#a4baed"/>
         <meta name="msapplication-TileColor" content="#a4baed"/>
         <meta name="theme-color" content="#a4baed"/>
     </Helmet>

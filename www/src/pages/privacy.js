@@ -3,41 +3,47 @@ import React from "react";
 import Layout from "../components/layout";
 import SignUp from "../components/signup";
 import SEO from "../components/seo";
+import { useStateValue } from "../utils/state";
 
-const PrivacyHero = ({ children }) => (
-  <div className="relative bg-gray-50 overflow-hidden">
+
+const PrivacyHero = ({ children }) => {
+const [{ theme }] = useStateValue();
+  return (
+  <div className={`relative ${theme.bg.normal} overflow-hidden`}>
     <div className="relative pt-6 pb-4">
       {children}
 
       <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
         <div className="text-center">
-          <h2 className="text-4xl tracking-tight leading-10 font-extrabold font-serif text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+          <h2 className={`text-4xl tracking-tight leading-10 font-extrabold font-serif ${theme.text.normal} sm:text-5xl sm:leading-none md:text-6xl`}>
             Privacy Policy
           </h2>
         </div>
       </div>
     </div>
   </div>
-);
+)};
 
-const PrivacyPage = () => (
+const PrivacyPage = () => {
+  const [{ theme }] = useStateValue();
+  return (
   <Layout HeroComponent={PrivacyHero}>
     <SEO title="Privacy" />
-    <div className="relative bg-gray-50 overflow-hidden">
+    <div className={`relative ${theme.bg.normal} ${theme.text.normal} overflow-hidden`}>
       <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
         <div className="text-base mt-10 mx-32">
           <p className="mt-4">
             Your privacy is important to us. It is AKMiller Technologies
             Limited's policy to respect your privacy regarding any information
             we may collect from you across this website,{" "}
-            <a className="text-midnight-400 hover:underline" href="https://naptime.app">https://naptime.app</a>, and other sites
+            <a className={`${theme.text.accent6} hover:no-underline underline`} href="https://naptime.app">https://naptime.app</a>, and other sites
             we own and operate.
           </p>
           <p className="mt-4">
             Our Sites include:
             <ol type="a" className="list-disc list-inside ml-8">
-              <li className="my-1"><a className="text-midnight-400 hover:underline" href="https://softwarecrafts.uk">Software Crafts</a></li>
-              <li className="my-1"><a className="text-midnight-400 hover:underline" href="https://naptime.app">naptime.app</a></li>
+              <li className="my-1"><a className={`${theme.text.accent6} hover:no-underline underline`} href="https://softwarecrafts.uk">Software Crafts</a></li>
+              <li className="my-1"><a className={`${theme.text.accent6} hover:no-underline underline`} href="https://naptime.app">naptime.app</a></li>
             </ol>
           </p>
           <h3 className="text-3xl mt-8">Information we collect</h3>
@@ -191,6 +197,6 @@ const PrivacyPage = () => (
       <SignUp />
     </div>
   </Layout>
-);
+)};
 
 export default PrivacyPage;

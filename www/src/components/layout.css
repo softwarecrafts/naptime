@@ -1,9 +1,5 @@
 @tailwind base;
 
-html {
-    @apply bg-gray-50;
-}
-
 @tailwind components;
 
 @tailwind utilities;

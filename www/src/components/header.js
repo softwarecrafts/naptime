@@ -1,21 +1,76 @@
 // import { Link } from "gatsby"
 import React from "react";
+import { useStateValue } from "../utils/state";
+import { darkTheme, lightTheme } from "../utils/theme";
 
 const Header = () => {
+  const [{ theme }, dispatch] = useStateValue();
   return (
     <>
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6">
-        <nav className="relative flex items-center justify-between sm:h-10 md:justify-center">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 w-screen h-full">
+        <nav className={`relative flex items-center justify-between sm:h-10 md:justify-center `}>
           <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
-            <div className="flex items-center justify-between w-full md:w-auto">
-              <a
-                href="/"
-                className="text-2xl text-gray-900 ml-3 py-2 px-4 font-hairline"
-              >
-                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="text-midnight-700 inline w-6 h-6 mx-1 hover:text-midnight-300"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                <span className="font-serif text-midnight-700 font-bold">nap</span>
-                time.app
-              </a>
+            <div className="flex items-center justify-between w-full md:w-full">
+              <div className="flex flex-row">
+                {theme.name === "dark" ? (
+                  <button
+                    type="button"
+                    className="ml-4 py-2 inline-block"
+                    onClick={() =>
+                      dispatch({
+                        type: "changeTheme",
+                        newTheme: lightTheme
+                      })
+                    }
+                  >
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    className={`${theme.text.accent7} inline w-6 h-6 mx-1 hover:${theme.text.accent3}`}
+                  >
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="ml-4 py-2 inline-block"
+                    onClick={() =>
+                      dispatch({
+                        type: "changeTheme",
+                        newTheme: darkTheme
+                      })
+                    }
+                  >
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    className={`${theme.text.accent7} inline w-6 h-6 mx-1 hover:${theme.text.accent3}`}
+                  >
+                    <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                  </svg>
+
+                  </button>
+                )}
+
+                <a
+                  href="/"
+                  className={`text-2xl ${theme.text.normal} py-2 font-hairline inline-block`}
+                >
+                  <span className={`font-serif ${theme.text.accent7} font-bold`}>
+                    nap
+                  </span>
+                  time.app
+                </a>
+              </div>
               <div className="-mr-2 flex items-center md:hidden">
                 {/*<button
                   type="button"
@@ -61,20 +116,68 @@ const Header = () => {
         className="absolute top-0 inset-x-0 p-2 md:hidden"
       >
         <div className="rounded-lg shadow-md transition transform origin-top-right">
-          <div className="rounded-lg bg-white shadow-xs overflow-hidden">
+          <div className={`rounded-lg bg-white shadow-xs overflow-hidden`}>
             <div className="px-5 pt-4 flex items-center justify-between">
-              <div>
-                <a
-                  href="/"
-                  className="text-2xl text-gray-900 ml-3 py-2 px-4 font-hairline"
+            <div className="flex flex-row">
+              {theme.name === "dark" ? (
+                <button
+                  type="button"
+                  className="ml-4 py-2 inline-block"
+                  onClick={() =>
+                    dispatch({
+                      type: "changeTheme",
+                      newTheme: lightTheme
+                    })
+                  }
                 >
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="text-midnight-700 inline w-6 h-6 mx-1"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                  <span className="font-serif text-midnight-700 font-bold">
-                    nap
-                  </span>
-                  time
-                </a>
-              </div>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  className={`${theme.text.accent7} inline w-6 h-6 mx-1 hover:${theme.text.accent3}`}
+                >
+                  <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="ml-4 py-2 inline-block"
+                  onClick={() =>
+                    dispatch({
+                      type: "changeTheme",
+                      newTheme: darkTheme
+                    })
+                  }
+                >
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  className={`${theme.text.accent7} inline w-6 h-6 mx-1 hover:${theme.text.accent3}`}
+                >
+                  <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+
+                </button>
+              )}
+
+              <a
+                href="/"
+                className={`text-2xl ${theme.text.normal} py-2 font-hairline inline-block`}
+              >
+                <span className={`font-serif ${theme.text.accent7} font-bold`}>
+                  nap
+                </span>
+                time.app
+              </a>
+            </div>
               <div className="-mr-2">
                 {/*<button
                   type="button"
