@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useReducer} from 'react';
-import { lightTheme } from './theme';
+import { lightTheme, darkTheme } from './theme';
 
 export const StateContext = createContext();
 
@@ -8,6 +8,12 @@ const getInitialState = () => {
     const theme = JSON.parse(window.localStorage.getItem('theme')) || lightTheme
     return {
       theme
+    }
+  }
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // dark mode
+    return {
+      theme: darkTheme
     }
   }
   return {
