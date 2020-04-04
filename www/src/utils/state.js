@@ -5,17 +5,24 @@ export const StateContext = createContext();
 
 const getInitialState = () => {
   if (typeof window !== `undefined`) {
-    const theme = JSON.parse(window.localStorage.getItem('theme')) || lightTheme
+    const theme = JSON.parse(window.localStorage.getItem('theme'))
+    if (theme === null) {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // dark mode
+        return {
+          theme: darkTheme
+        }
+      } else {
+        return {
+          theme: lightTheme
+        }
+      }
+    }
     return {
       theme
     }
   }
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // dark mode
-    return {
-      theme: darkTheme
-    }
-  }
+
   return {
     theme: lightTheme
   }
