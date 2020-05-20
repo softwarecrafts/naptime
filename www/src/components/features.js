@@ -32,7 +32,7 @@ const Features = () => {
             <div className="mt-5">
               <h5 className={`text-lg leading-6 font-medium ${theme.text.normal}`}>Reclaim your weekend</h5>
               <p className={`mt-2 text-base leading-6 ${theme.text.muted4}`}>
-                Use the simple pre-defined time slots to ensure your work doesn't intrude on your time off.
+                Use the simple predefined time slots to ensure your work doesn't intrude on your time off.
               </p>
             </div>
           </div>
