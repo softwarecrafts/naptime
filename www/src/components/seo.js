@@ -80,7 +80,8 @@ function SEO({ description, lang, meta, title }) {
         <link rel="mask-icon" href={`/icons/${theme.name}/safari-pinned-tab.svg`} color="#a4baed"/>
         <meta name="msapplication-TileColor" content="#a4baed"/>
         <meta name="theme-color" content="#a4baed"/>
-        <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="softwarecrafts" data-description="Support me on Buy me a coffee!" data-message="Thank you for visiting. You can now buy me a tea!" data-color="#5F7FFF" data-position="left" data-x_margin="18" data-y_margin="18"></script>
+        <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="softwarecrafts" data-description="Support naptime with Green Tea!" data-message="Thank you for your donation. Every tea helps!" data-color="#a4baed" data-position="left" data-x_margin="18" data-y_margin="18"></script>
+
     </Helmet>
   )
 }
