@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
-import { useStateValue } from "../utils/state";
+import React from "react"
+import PropTypes from "prop-types"
+import Helmet from "react-helmet"
+import { useStaticQuery, graphql } from "gatsby"
+import { useStateValue } from "../utils/state"
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -24,10 +24,10 @@ function SEO({ description, lang, meta, title }) {
         }
       }
     `
-  );
-  const [{ theme }] = useStateValue();
+  )
+  const [{ theme }] = useStateValue()
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || site.siteMetadata.description
 
   return (
     <Helmet
@@ -75,29 +75,11 @@ function SEO({ description, lang, meta, title }) {
         href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900&display=swap"
         rel="stylesheet"
       />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href={`/icons/${theme.name}/apple-touch-icon.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href={`/icons/${theme.name}/favicon-32x32.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href={`/icons/${theme.name}/favicon-16x16.png`}
-      />
+      <link rel="apple-touch-icon" sizes="180x180" href={`/icons/${theme.name}/apple-touch-icon.png`} />
+      <link rel="icon" type="image/png" sizes="32x32" href={`/icons/${theme.name}/favicon-32x32.png`} />
+      <link rel="icon" type="image/png" sizes="16x16" href={`/icons/${theme.name}/favicon-16x16.png`} />
       <link rel="manifest" href={`/icons/${theme.name}/site.webmanifest`} />
-      <link
-        rel="mask-icon"
-        href={`/icons/${theme.name}/safari-pinned-tab.svg`}
-        color="#a4baed"
-      />
+      <link rel="mask-icon" href={`/icons/${theme.name}/safari-pinned-tab.svg`} color="#a4baed" />
       <meta name="msapplication-TileColor" content="#a4baed" />
       <meta name="theme-color" content="#a4baed" />
       <script
@@ -111,20 +93,20 @@ function SEO({ description, lang, meta, title }) {
         data-x_margin="18"
         data-y_margin="18"></script>
     </Helmet>
-  );
+  )
 }
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-};
+}
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-};
+}
 
-export default SEO;
+export default SEO
