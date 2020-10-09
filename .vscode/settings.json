@@ -1,0 +1,6 @@
+{
+  "god.tsconfig": "./zzz/tsconfig.json",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
+}
