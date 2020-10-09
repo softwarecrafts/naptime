@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@tailwindcss/ui": "^0.3.0",
+    "add": "^2.0.6",
+    "axios": "^0.19.2",
     "gatsby": "^2.21.37",
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-postcss": "^2.3.2",
@@ -24,12 +26,17 @@
     "gatsby-plugin-sharp": "^2.6.9",
     "gatsby-plugin-typescript": "^2.4.3",
     "gatsby-transformer-sharp": "^2.5.3",
+    "magic-sdk": "^2.1.0",
+    "moment": "^2.27.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "swr": "^0.2.3",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
+    "@storybook/cli": "^5.3.19",
     "@types/node": "^14.0.5",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
