@@ -5,7 +5,7 @@
       "actions": [
         {
           "app": "convertkit",
-          "apiSecret": "$CONVERTKIT_SECRET",
+          "apiKey": "$CONVERTKIT_SECRET",
           "type": "applyTags",
           "tags": [
             "website",
@@ -20,7 +20,7 @@
       "actions": [
         {
           "app": "convertkit",
-          "apiSecret": "$CONVERTKIT_SECRET",
+          "apiKey": "$CONVERTKIT_SECRET",
           "type": "applyTags",
           "tags": [
             "website",
