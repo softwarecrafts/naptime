@@ -1,0 +1,133 @@
+scalar Json
+scalar DateTime
+scalar Date
+scalar Password
+
+type Node {
+    id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Connection {
+    pageInfo: PageInfo!
+}
+
+type Edge {
+    cursor: String!
+}
+
+type Email {
+    address: String!
+    verified: Boolean!
+}
+
+type User implements Node {
+    id: ID!
+    name: String
+    username: String
+    primaryEmail: Email
+    emails: [Email!]
+    # other generic account details
+}
+
+enum ProviderTypeEnum {
+    Scheduler
+    Communicator
+}
+
+# this is something like Google Calendar, Slack, Discord etc..
+type Provider implements Node {
+    id: ID!
+    type: ProviderTypeEnum!
+    accounts: [Accounts!]!
+}
+
+# this is an individual account of a provider
+type Account implements Node {
+    id: ID!
+    provider: Provider!
+    email: Email
+    name: String!
+}
+
+# This is an event on a calendar which may or may not have an associated nap
+type Event implements Node {
+    id: ID!
+    nap: Nap
+    start: DateTime
+    end: DateTime
+    name: String
+    description: String
+}
+
+type EventConnection implements Connection {
+    edges: [EventEdge]
+    pageInfo: PageInfo!
+}
+
+type EventEdge implements Edge {
+    cursor: String!
+    node: Event
+}
+
+# A calendar of a user
+type Calendar implements Node {
+    id: ID!
+    provider: Provider!
+    events: EventConnection
+    name: String
+}
+
+type NapConnection implements Connection3 {
+    edges: [NapEdge]
+    pageInfo: PageInfo!
+}
+
+type NapEdge implements Edge {
+    cursor: String!
+    node: Nap
+}
+
+# a nap! this what controls a snooze
+type Nap {
+    id: ID!
+    start: DateTime
+    end: DateTime
+    icon: String
+    status: String
+    dnd: Boolean
+    accounts: [Account!]!
+    tags: [String]
+}
+
+type Query {
+    me: User;
+    calendars: [Calendar]!
+    naps: NapConnection
+    nextNap: Nap
+    accounts: [Account]!
+
+    node(id: ID!): Node
+}
+
+type Mutation {
+    register
+    login
+    logout
+    addCalendar
+    addAccount
+    removeAccount
+    createNap
+    updateNap
+}
+
+schema {
+    query: Query;
+    mutation: Mutation;
+}

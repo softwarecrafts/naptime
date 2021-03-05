@@ -91,3 +91,17 @@ bucketable - value of the bucket - eg. project name - immutable.
 
 a recording is a piece of data - data to bucket
 recordable - contains the content. - immutable
+
+
+
+## API todo
+
+* user auth with slack
+* user auth with google (calendar)
+* register, login, logout
+* API setup
+* build out the models
+* build out the API itself
+
+
+* could I convert the graphql view to be async? is that enabled in aridne?

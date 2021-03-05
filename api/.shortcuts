@@ -1,0 +1,28 @@
+# Docker shortcuts
+# These are shell aliases which you can use if you like to reduce the amount of typing!
+# Simply source this file in your shell or choice eg `source .shortcuts` and you should be good to go
+
+
+# they work by specifying the service name after the alias
+# eg logs api
+#    dcsh admin ...etc
+# Docker compose commands
+alias dcb="docker-compose -f local.yml up -d --build" # rebuild the image and bring up the services
+alias dclogs="docker-compose -f local.yml logs --tail=50 --follow" # tail the logs of a service
+alias dcup="docker-compose -f local.yml up -d" # bring the containers up
+alias dcexec="docker-compose -f local.yml exec" # run a command in a running container
+alias dcrun="docker-compose -f local.yml run" # run a command in a new container
+alias dcstart="docker-compose -f local.yml start" # start a specified service
+alias dcstop="docker-compose -f local.yml stop" # stop a specified service
+alias dcrestart="docker-compose -f local.yml restart" # restart a container
+alias dcsh='f(){ docker-compose -f local.yml exec "$1" /bin/bash;  unset -f f; }; f' # run a bash shell in a specified container
+alias dcshr='f(){ docker-compose -f local.yml run "$1" /bin/bash;  unset -f f; }; f' # run a bash shell in a new container for the specified service
+
+# export the schema and restart the frontend
+alias schema_export="docker-compose -f local.yml start schema_export; docker-compose -f local.yml restart frontend"
+alias heroku_restore="docker-compose -f local.yml start heroku_export && docker-compose -f local.yml exec postgres /load_db_dump"
+
+# Django specific commands - NOT WORKING (YET)
+# alias djt='f(){ docker-compose -f local.yml exec "$1" /run-tests.sh;  unset -f f; }; f'
+# alias djsh='f(){ docker-compose -f local.yml exec "$1" /app/manage.py shell_plus;  unset -f f; }; f'
+# alias djmg='f(){ SERVICE=$1; shift; docker-compose -f local.yml exec "$SERVICE" /app/manage.py $@;  unset -f f; }; f'
