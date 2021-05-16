@@ -3,8 +3,14 @@ scalar DateTime
 scalar Date
 scalar Password
 
-type Node {
-    id: ID!
+interface Node {
+  id: ID!
+}
+
+interface Payload {
+  status: Boolean!
+  errors: [Errors]!
+  output: Node!
 }
 
 type PageInfo {
@@ -14,120 +20,167 @@ type PageInfo {
   endCursor: String
 }
 
-type Connection {
-    pageInfo: PageInfo!
+interface Connection {
+  pageInfo: PageInfo!
 }
 
-type Edge {
-    cursor: String!
+interface Edge {
+  cursor: String!
 }
+
+"An error message from the server"
+type ErrorMessage {
+  "A short code to be used in code"
+  code: String
+  "A human readable error message"
+  message: String
+}
+
+type Errors {
+  field: String
+  errors: [ErrorsOrErrorMessage]
+}
+
+union ErrorsOrErrorMessage = Errors | ErrorMessage
 
 type Email {
-    address: String!
-    verified: Boolean!
+  address: String!
+  verified: Boolean!
 }
 
 type User implements Node {
-    id: ID!
-    name: String
-    username: String
-    primaryEmail: Email
-    emails: [Email!]
-    # other generic account details
+  id: ID!
+  name: String
+  username: String
+  primaryEmail: Email
+  emails: [Email!]
+  # other generic account details
+}
+
+type registerPayload implements Payload {
+  status: Boolean!
+  errors: [Errors]!
+  user: User
+  output: Node!
+}
+
+input registerInput {
+  username: String
 }
 
 enum ProviderTypeEnum {
-    Scheduler
-    Communicator
+  Scheduler
+  Communicator
 }
 
 # this is something like Google Calendar, Slack, Discord etc..
 type Provider implements Node {
-    id: ID!
-    type: ProviderTypeEnum!
-    accounts: [Accounts!]!
+  id: ID!
+  type: ProviderTypeEnum!
+  accounts: [Account!]!
 }
 
 # this is an individual account of a provider
 type Account implements Node {
-    id: ID!
-    provider: Provider!
-    email: Email
-    name: String!
+  id: ID!
+  provider: Provider!
+  email: Email
+  name: String!
 }
 
 # This is an event on a calendar which may or may not have an associated nap
 type Event implements Node {
-    id: ID!
-    nap: Nap
-    start: DateTime
-    end: DateTime
-    name: String
-    description: String
+  id: ID!
+  nap: Nap
+  start: DateTime
+  end: DateTime
+  name: String
+  description: String
 }
 
 type EventConnection implements Connection {
-    edges: [EventEdge]
-    pageInfo: PageInfo!
+  edges: [EventEdge]
+  pageInfo: PageInfo!
 }
 
 type EventEdge implements Edge {
-    cursor: String!
-    node: Event
+  cursor: String!
+  node: Event
 }
 
 # A calendar of a user
 type Calendar implements Node {
-    id: ID!
-    provider: Provider!
-    events: EventConnection
-    name: String
+  id: ID!
+  provider: Provider!
+  events: EventConnection
+  name: String
 }
 
-type NapConnection implements Connection3 {
-    edges: [NapEdge]
-    pageInfo: PageInfo!
+type NapConnection implements Connection {
+  edges: [NapEdge]
+  pageInfo: PageInfo!
 }
 
 type NapEdge implements Edge {
-    cursor: String!
-    node: Nap
+  cursor: String!
+  node: Nap
 }
 
 # a nap! this what controls a snooze
-type Nap {
-    id: ID!
-    start: DateTime
-    end: DateTime
-    icon: String
-    status: String
-    dnd: Boolean
-    accounts: [Account!]!
-    tags: [String]
+type Nap implements Node {
+  id: ID!
+  start: DateTime
+  end: DateTime
+  icon: String
+  status: String
+  dnd: Boolean
+  accounts: [Account!]!
+  tags: [String]
+}
+
+input napInput {
+  start: DateTime
+  end: DateTime
+  icon: String
+  status: String
+  dnd: Boolean
+  event: ID
+  accounts: [ID]
+  tags: [String]
+}
+
+type napPayload implements Payload {
+  status: Boolean!
+  errors: [Errors]!
+  nap: Nap
+  output: Node!
 }
 
 type Query {
-    me: User;
-    calendars: [Calendar]!
-    naps: NapConnection
-    nextNap: Nap
-    accounts: [Account]!
+  registerStart: String
+  me: User
+  calendars: [Calendar]!
+  naps: NapConnection
+  nextNap: Nap
+  accounts: [Account]!
 
-    node(id: ID!): Node
+  node(id: ID!): Node
 }
 
 type Mutation {
-    register
-    login
-    logout
-    addCalendar
-    addAccount
-    removeAccount
-    createNap
-    updateNap
+  # todo - define payloads & inputs
+  register(input: registerInput): registerPayload!
+  login: Boolean
+  logout: Boolean
+
+  addCalendar: String
+  addAccount: String
+  removeAccount: String
+  createNap(input: napInput): napPayload!
+  updateNap: String
 }
 
 schema {
-    query: Query;
-    mutation: Mutation;
+  query: Query
+  mutation: Mutation
 }

@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}A user with this email already exists.{% endblocktrans %}

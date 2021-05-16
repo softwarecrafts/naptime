@@ -68,16 +68,22 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.slack",
     "rest_framework",
-    "rest_framework.authtoken",
+    # "rest_framework.authtoken",
     "corsheaders",
     "ariadne.contrib.django",
-
+    "taggit",
 ]
 
 LOCAL_APPS = [
+    "api._core.apps.CoreConfig",
     "api.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "api.calendars.apps.CalendarsConfig",
+    "api.accounts.apps.AccountsConfig",
+    "api.naps.apps.NapsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -285,3 +291,31 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+            "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
+            "https://www.googleapis.com/auth/calendar.events",
+            "https://www.googleapis.com/auth/calendar.readonly",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "APP": {
+            "client_id": env("GOOGLE_CLIENT_ID"),
+            "secret": env("GOOGLE_CLIENT_SECRET"),
+            "key": "",
+        },
+    },
+    "slack": {
+        "APP": {
+            "client_id": env("SLACK_CLIENT_ID"),
+            "secret": env("SLACK_CLIENT_SECRET"),
+        },
+        "SCOPE": ["dnd:read", "dnd:write", "users:write"],
+    },
+}

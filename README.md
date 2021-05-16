@@ -92,16 +92,34 @@ bucketable - value of the bucket - eg. project name - immutable.
 a recording is a piece of data - data to bucket
 recordable - contains the content. - immutable
 
-
-
 ## API todo
 
-* user auth with slack
-* user auth with google (calendar)
-* register, login, logout
-* API setup
-* build out the models
-* build out the API itself
+- user auth with slack
+- user auth with google (calendar)
+- register, login, logout
+- API setup
+- build out the models
+- build out the API itself
+- convert the login/sign up views to be on brand
 
+- could I convert the graphql view to be async? is that enabled in aridne?
 
-* could I convert the graphql view to be async? is that enabled in aridne?
+- we have normal oauth2 to google to sign up.. this is done.
+- how do we auth with the graphQL
+
+# May 2021
+
+1. User signs up with Google
+2. User adds Slack
+3. Present Calendar to user (there maybe other options to display/other onboarding screens)
+4. User creates a 'nap' on their calendar or selects an existing event to nap
+
+   - Create a nap, that is linked to a calendar
+   - Get an event from a the calendar
+   - work out trigger for the nap
+
+5. API to recieve nap and call the relevant APIs to perform the snoozes
+   - What does authentication look like at this point? What type of OAuth2 do I need to support?
+   - The queue calling back to naptime.
+6. Drop on to the queue again to cancel snooze
+7. ought to be the same as 5 with an extra hook

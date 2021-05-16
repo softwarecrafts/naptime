@@ -2,12 +2,12 @@ from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
 
-class UsersConfig(AppConfig):
-    name = "api.users"
-    verbose_name = _("Users")
+class CalendarsConfig(AppConfig):
+    name = "api.calendars"
+    verbose_name = _("Calendars")
 
     def ready(self):
         try:
-            import api.users.receivers  # noqa F401
+            import api.calendars.receivers  # noqa F401
         except ImportError:
             pass

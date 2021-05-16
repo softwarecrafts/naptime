@@ -7,7 +7,7 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 
-from api.core.views import PrivateGraphQLView
+from api._core.views import PrivateGraphQLView
 
 from .schema import schema
 

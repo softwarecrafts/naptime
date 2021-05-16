@@ -15,8 +15,8 @@ alias dcrun="docker-compose -f local.yml run" # run a command in a new container
 alias dcstart="docker-compose -f local.yml start" # start a specified service
 alias dcstop="docker-compose -f local.yml stop" # stop a specified service
 alias dcrestart="docker-compose -f local.yml restart" # restart a container
-alias dcsh='f(){ docker-compose -f local.yml exec "$1" /bin/bash;  unset -f f; }; f' # run a bash shell in a specified container
-alias dcshr='f(){ docker-compose -f local.yml run "$1" /bin/bash;  unset -f f; }; f' # run a bash shell in a new container for the specified service
+alias dcshr='f(){ docker-compose -f local.yml exec "$1" /bin/bash;  unset -f f; }; f' # run a bash shell in a specified container
+alias dcsh='f(){ docker-compose -f local.yml run "$1" /bin/bash;  unset -f f; }; f' # run a bash shell in a new container for the specified service
 
 # export the schema and restart the frontend
 alias schema_export="docker-compose -f local.yml start schema_export; docker-compose -f local.yml restart frontend"
