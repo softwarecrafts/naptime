@@ -1,11 +1,11 @@
-version: '3'
+version: "3"
 
 volumes:
   local_postgres_data: {}
   local_postgres_data_backups: {}
 
 services:
-  django:
+  django: &django
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -33,6 +33,43 @@ services:
       - local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
+
+  rabbitmq:
+    image: rabbitmq:3.6
+    container_name: rabbitmq
+
+  worker:
+    <<: *django
+    image: api_local_worker
+    container_name: worker
+    depends_on:
+      - rabbitmq
+      - postgres
+    volumes:
+      - .:/app:Z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    command: /start_worker
+    ports: []
+
+  celerybeat:
+    <<: *django
+    image: api_local_beat
+    container_name: celerybeat
+    depends_on:
+      - rabbitmq
+      - postgres
+    ports: []
+    command: /start-celerybeat
+
+  flower:
+    <<: *django
+    image: api_local_flower
+    container_name: flower
+    ports:
+      - "5555:5555"
+    command: /start-flower
 
   docs:
     image: api_local_docs

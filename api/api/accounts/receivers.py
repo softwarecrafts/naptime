@@ -5,8 +5,7 @@ from allauth.socialaccount.signals import (
 )
 from allauth.account.models import EmailAddress
 from django.dispatch import receiver
-
-# from api.providers.slack import slack_client
+from django.contrib.auth import get_user_model
 
 from .models import Team, Account, Provider
 
@@ -20,8 +19,6 @@ def get_slack_workspace_info(request, sociallogin, **kwargs):
     slack_provider, created = Provider.objects.get_or_create(
         name=sociallogin.account.provider, type=Provider.ProviderType.COMMUNICATOR
     )
-    # access_token = sociallogin.token.token
-    user = sociallogin.user
     team_id = sociallogin.account.extra_data["team"]["id"]
     team, created = Team.objects.get_or_create(
         remote_id=team_id,
@@ -35,8 +32,14 @@ def get_slack_workspace_info(request, sociallogin, **kwargs):
         email=sociallogin.account.extra_data["user"]["email"]
     )
 
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = get_user_model().objects.get(emailaddress=email_object)
+
     account, created = Account.objects.get_or_create(
         owner=user,
+        social_login=sociallogin.account,
         team=team,
         defaults={
             "email_address": email_object,
@@ -67,6 +70,7 @@ def get_google_account_info(request, sociallogin, **kwargs):
     account, created = Account.objects.get_or_create(
         owner=sociallogin.user,
         email_address=email_object,
+        social_login=sociallogin.account,
         defaults={
             "provider": provider,
             "raw": sociallogin.account.extra_data,

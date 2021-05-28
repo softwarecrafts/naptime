@@ -15,12 +15,12 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 RUN addgroup --system django \
-    && adduser --system --ingroup django django
+  && adduser --system --ingroup django django
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
 RUN pip install --no-cache-dir -r /requirements/production.txt \
-    && rm -rf /requirements
+  && rm -rf /requirements
 
 COPY --chown=django:django ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
@@ -31,6 +31,21 @@ COPY --chown=django:django ./compose/production/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 COPY --chown=django:django . /app
+
+
+COPY --chown=django:django ./compose/production/django/start-worker /start-worker
+RUN sed -i 's/\r$//g' /start-worker
+RUN chmod +x /start-worker
+
+
+COPY --chown=django:django ./compose/production/django/start-beat /start-beat
+RUN sed -i 's/\r$//g' /start-beat
+RUN chmod +x /start-beat
+
+
+COPY ./compose/production/django/start-flower /start-flower
+RUN sed -i 's/\r$//g' /start-flower
+RUN chmod +x /start-flower
 
 USER django
 

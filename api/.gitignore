@@ -275,3 +275,6 @@ api/media/
 .env
 .envs/*
 !.envs/.local/
+
+
+celerybeat-schedule

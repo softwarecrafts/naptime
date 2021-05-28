@@ -1,4 +1,8 @@
+import json
 from ariadne import ObjectType, convert_camel_case_to_snake
+from django.utils.timezone import timedelta
+
+from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from rest_framework.utils import model_meta
 
@@ -66,3 +70,28 @@ class NapResolver(ModelResolver):
 
     def resolve_tags(obj, info):
         return list(obj.tags.values_list("name", flat=True))
+
+    def create(self, *args):
+        nap_payload = super().create(*args)
+        nap = nap_payload.output
+        start = nap.start - timedelta(seconds=60)
+        end = nap.end + timedelta(seconds=60)
+        clocked_start = ClockedSchedule.objects.create(clocked_time=start)
+        clocked_end = ClockedSchedule.objects.create(clocked_time=end)
+
+        # start and end times would possibly be reversed for the logic of allowing notifications rather than the current way of thinking?
+
+        PeriodicTask.objects.create(
+            clocked=clocked_start,
+            name=f"Start Nap: {nap.uuid}",
+            kwargs=json.dumps({"nap_id": nap.uuid}),
+            task="api.naps.tasks.trigger_nap",
+        )
+        PeriodicTask.objects.create(
+            clocked=clocked_end,
+            name=f"End Nap: {nap.uuid}",
+            kwargs=json.dumps({"nap_id": nap.uuid, "end": True}),
+            task="api.naps.tasks.trigger_nap",
+        )
+
+        return nap_payload

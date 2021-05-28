@@ -5,6 +5,8 @@ set -o pipefail
 set -o nounset
 
 
+# N.B. If only .env files supported variable expansion...
+export CELERY_BROKER_URL="${RABBIT_URL}"
 
 
 if [ -z "${POSTGRES_USER}" ]; then

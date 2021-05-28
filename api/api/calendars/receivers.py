@@ -2,7 +2,6 @@ from allauth.socialaccount.signals import pre_social_login
 from django.dispatch import receiver
 
 from api.providers.google.calendar import google_calendar_client
-from api.providers.slack import slack_client
 
 from .models import Calendar
 
