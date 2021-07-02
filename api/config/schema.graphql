@@ -1,6 +1,7 @@
 scalar Json
 scalar DateTime
 scalar Date
+scalar Time
 scalar Password
 
 interface Node {
@@ -112,7 +113,7 @@ type EventEdge implements Edge {
 type Calendar implements Node {
   id: ID!
   provider: Provider!
-  events: EventConnection
+  events(first: Int, last: Int, before: String, after: String): EventConnection
   name: String
 }
 

@@ -17,8 +17,6 @@ Playing with AWS lambda and snoozing slack every Thursday.
     - a user can have multiple snoozes
     - a snooze belongs to a user & a account
     - a account can have many users, a user can have many accounts
-- [ ] per user snoozing
-- [ ] how to manage multiple snoozes (multiple lambdas?- possibly costly)
 - [ ] UX - slack commands
   - [ ] set a snooze
   - [ ] list snoozes
@@ -30,8 +28,10 @@ Playing with AWS lambda and snoozing slack every Thursday.
 - [ ] pricing (stripe?)
 - [x] landing page (netlify)
 - [ ] other notifications?
-  - [ ] Gmail
+  - [ ] Gmail (OOO)
   - [ ] other chat providers
+  - [ ] Chrome Extension (web notifications)
+  - [ ] app notifications (mobile app)
 
 a user creates multiple naps
 a nap has a start datetime and end datetime
@@ -107,6 +107,8 @@ recordable - contains the content. - immutable
 - we have normal oauth2 to google to sign up.. this is done.
 - how do we auth with the graphQL
 
+- remove accounts if a user removes social connection
+
 # May 2021
 
 1. User signs up with Google
@@ -123,3 +125,72 @@ recordable - contains the content. - immutable
    - The queue calling back to naptime.
 6. Drop on to the queue again to cancel snooze
 7. ought to be the same as 5 with an extra hook
+
+# snoozing
+
+Default off
+
+start a nap:
+dnd - on
+set status and icon
+away
+minutes = length of nap
+
+end a nap
+dnd - off
+set default status and icon
+auto
+minutes = 0
+
+Default on:
+(every X time - set DND, away and icon)
+
+start a 'nap'
+dnd - off
+icon & status
+auto
+mintues = length of nap
+
+end a 'nap'
+dnd - on
+icon & status
+away
+minutes = 1 week
+
+# brand/icon
+
+setting sun on top
+line
+moon on the bottom
+
+# Accounts TODO
+
+- when defaults (dnd, icon, status) change properate these to the actual Slack account
+
+# Next steps
+
+- fetching calendar data on demand from the API
+- events based on a date filter, it a week at a time?
+
+- (re)Start the frontend!
+- this means actually sorting out the auth flows...
+
+## ideas
+
+- split out schema into each django app?
+
+## relay
+
+https://relay.dev/docs/guides/graphql-server-specification/
+https://relay.dev/assets/files/connections-61fc54c286f0afc0b4f230f7c4b150bf.htm#
+
+# Oauth2 flow
+
+- frontend calls to Google
+  1. setup new frontend!
+  2. Add Oauth library there...
+  3. Configure Oauth ont the frontend
+- That flowthen completes
+- Frontend makes a call to the backend with
+- Backend verifies token and gives the frontend our own token (wihc could be an outh access token?)
+- Backend makes actual API requests to Google for Calendar stuff

@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.db import connection
 
 from ariadne.contrib.django.views import GraphQLView
+
 # from oauth2_provider.views.mixins import OAuthLibMixin
 # from oauth2_provider.settings import oauth2_settings
 
@@ -20,7 +21,6 @@ class AuthenticationFailed(Exception):
 
 class AccessTokenExpired(AuthenticationFailed):
     def __init__(self, error_dict):
-        print(error_dict)
         self.code = error_dict["error"]
         self.message = error_dict["error_description"]
 
@@ -63,7 +63,6 @@ class PrivateGraphQLView(GraphQLView):
             )
         except (AuthenticationFailed) as exc:
             return (True, {"errors": {"status": False, "messages": [str(exc)]}})
-
 
 
 def healthcheck(_request):

@@ -347,3 +347,6 @@ CELERY_TASK_TIME_LIMIT = 5 * 60
 CELERY_TASK_SOFT_TIME_LIMIT = 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+
+RELAY_PAGE_SIZE = 20

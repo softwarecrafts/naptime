@@ -74,9 +74,15 @@ class Nap(BaseModel):
     )
 
     def __str__(self):
-        return f"{self.start} -> {self.end}"
+        event = ""
+        if self.event:
+            event = f"with event {self.event}"
+        return f"{self.start} -> {self.end} {event}"
 
     def save(self, *args, **kwargs):
+        if not self.start and self.event:
+            self.start = self.event.start
+            self.end = self.event.end
         self.create_background_tasks()
         super().save(*args, **kwargs)
 
@@ -84,15 +90,41 @@ class Nap(BaseModel):
     def duration(self):
         return (self.end - self.start).total_seconds() / 60
 
+    def _create_clocked(self, date_time):
+        # clear out any random clocks without tasks
+        ClockedSchedule.objects.filter(
+            clocked_time=date_time, periodictask__isnull=True
+        ).delete()
+        try:
+            clocked, _created = ClockedSchedule.objects.get_or_create(
+                clocked_time=date_time
+            )
+        except ClockedSchedule.MultipleObjectsReturned:
+            # get a list of existing tasks with this clock
+            existing_tasks = PeriodicTask.objects.filter(
+                clocked__clocked_time=date_time
+            )
+            # then delete the clocks
+            ClockedSchedule.objects.filter(
+                clocked_time=date_time, periodictask__isnull=False
+            ).delete()
+            # create a new one
+            clocked, _created = ClockedSchedule.objects.get_or_create(
+                clocked_time=date_time
+            )
+            # then re-add the existing tasks to the new clocked
+            clocked.periodictask_set.set(existing_tasks)
+        return clocked
+
     def create_background_tasks(self):
         start = self.start - timedelta(seconds=60)
         end = self.end + timedelta(seconds=60)
-        clocked_start, _created = ClockedSchedule.objects.get_or_create(
-            clocked_time=start
-        )
-        clocked_end, _created = ClockedSchedule.objects.get_or_create(clocked_time=end)
 
-        # start and end times would possibly be reversed for the logic of allowing notifications rather than the current way of thinking?
+        clocked_start = self._create_clocked(start)
+        clocked_end = self._create_clocked(end)
+
+        # start and end times would possibly be reversed for the logic of
+        # allowing notifications rather than the current way of thinking?
 
         self.start_task, _created = PeriodicTask.objects.get_or_create(
             clocked=clocked_start,

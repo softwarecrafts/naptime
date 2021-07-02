@@ -2,14 +2,12 @@
 
 ## todo
 
-* buy me a coffee button (& page!)
-* Update site descriptions etc. Add social sharing image
-* dark mode
-    - move theme down into components to make it more maintainable? just have a global name
-    - (time based - would be fun) - needs permissions from the user :(
-        - https://github.com/mourner/suncalc
-        - https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
-
+- Update site descriptions etc. Add social sharing image
+- dark mode
+  - move theme down into components to make it more maintainable? just have a global name
+  - (time based - would be fun) - needs permissions from the user :(
+    - https://github.com/mourner/suncalc
+    - https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
 
 midnight colours for reference
 100 - 222, 31, 93, #a4baed

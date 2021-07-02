@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
@@ -14,14 +14,15 @@ class CalendarAPI:
             "calendar", "v3", credentials=Credentials(token=value, scopes=SCOPES)
         )
 
-    def get_events(self):
-        now = datetime.utcnow().isoformat() + "Z"  # 'Z' indicates UTC time
+    def get_events(self, calendar_id=None):
+        now = datetime.utcnow()
+        next = now + timedelta(days=7)
         events_result = (
             self.service.events()
             .list(
-                calendarId="primary",
-                timeMin=now,
-                maxResults=10,
+                calendarId=calendar_id if calendar_id is not None else "primary",
+                timeMin=now.isoformat() + "Z",  # 'Z' indicates UTC time
+                timeMax=next.isoformat() + "Z",  # 'Z' indicates UTC time
                 singleEvents=True,
                 orderBy="startTime",
             )
@@ -44,3 +45,43 @@ class CalendarAPI:
 
 
 google_calendar_client = CalendarAPI()
+
+
+# list(
+#     # calendarId,
+#     # iCalUID=None,
+#     # maxAttendees=None,
+#     # maxResults=None,
+#     pageToken=None,
+#     # privateExtendedProperty=None,
+#     q=None,
+#     # sharedExtendedProperty=None,
+#     # showDeleted=None,
+#     # showHiddenInvitations=None,
+#     singleEvents=None,
+#     syncToken=None,
+#     # timeMax=None,
+#     # timeMin=None,
+#     # timeZone=None,
+#     # updatedMin=None
+# )
+
+
+# watch(
+#     'primary',
+#     alwaysIncludeEmail=None,
+#     body=None,
+#     iCalUID=None,
+#     maxAttendees=None,
+#     maxResults=None,
+#     orderBy=None,
+#     pageToken=None,
+#     privateExtendedProperty=None,
+#     q=None,
+#     sharedExtendedProperty=None,
+#     showDeleted=None,
+#     showHiddenInvitations=None,
+#     singleEvents=None,
+#     syncToken=None,
+#     timeMax=None,
+#     timeMin=None, timeZone=None, updatedMin=None)

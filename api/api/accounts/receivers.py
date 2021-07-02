@@ -39,7 +39,7 @@ def get_slack_workspace_info(request, sociallogin, **kwargs):
 
     account, created = Account.objects.get_or_create(
         owner=user,
-        social_login=sociallogin.account,
+        social_account=sociallogin.account,
         team=team,
         defaults={
             "email_address": email_object,
@@ -47,10 +47,6 @@ def get_slack_workspace_info(request, sociallogin, **kwargs):
             "raw": sociallogin.account.extra_data["user"],
         },
     )
-
-    # access_token = sociallogin.token.token
-    # slack_client.set_token(access_token)
-    # print(slack_client.get_user_dnd_info(team_id))
 
 
 @receiver(pre_social_login)
@@ -70,7 +66,7 @@ def get_google_account_info(request, sociallogin, **kwargs):
     account, created = Account.objects.get_or_create(
         owner=sociallogin.user,
         email_address=email_object,
-        social_login=sociallogin.account,
+        social_account=sociallogin.account,
         defaults={
             "provider": provider,
             "raw": sociallogin.account.extra_data,
