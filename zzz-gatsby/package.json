@@ -18,7 +18,7 @@
   "dependencies": {
     "@tailwindcss/ui": "^0.3.0",
     "add": "^2.0.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "gatsby": "^2.21.37",
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-postcss": "^2.3.2",
