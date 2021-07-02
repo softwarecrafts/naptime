@@ -1,0 +1,62 @@
+{
+  "name": "gatsby-starter-software-crafts",
+  "private": true,
+  "description": "A blank Gatsby some the software crafts defaults",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "dependencies": {
+    "@tailwindcss/ui": "^0.3.0",
+    "add": "^2.0.6",
+    "axios": "^0.19.2",
+    "gatsby": "^2.21.37",
+    "gatsby-plugin-manifest": "^2.4.9",
+    "gatsby-plugin-postcss": "^2.3.2",
+    "gatsby-plugin-react-helmet": "^3.3.2",
+    "gatsby-plugin-sharp": "^2.6.9",
+    "gatsby-plugin-typescript": "^2.4.3",
+    "gatsby-transformer-sharp": "^2.5.3",
+    "magic-sdk": "^2.1.0",
+    "moment": "^2.27.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^6.0.0",
+    "react-transition-group": "^4.4.1",
+    "swr": "^0.2.3",
+    "yarn": "^1.22.4"
+  },
+  "devDependencies": {
+    "@storybook/cli": "^5.3.19",
+    "@types/node": "^14.0.5",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "gatsby-plugin-tslint": "^0.0.2",
+    "prettier": "^2.0.5",
+    "tailwindcss": "^1.4.6",
+    "tslint": "^6.1.2",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/softwarecrafts/gatsby-starter"
+  },
+  "bugs": {
+    "url": "https://github.com/softwarecrafts/gatsby-starter/issues"
+  }
+}
