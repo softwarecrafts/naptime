@@ -21,7 +21,7 @@ const Features = () => {
             <div className="mt-5">
               <h5 className={`text-lg leading-6 font-medium ${theme.text.normal}`}>Get deep work done.</h5>
               <p className={`mt-2 text-base leading-6 ${theme.text.muted4}`}>
-                Make your weekly schedule actionable by having naptime automatically turn off slack notifications based on your calendar.
+                Make your weekly schedule actionable by having naptime automatically turn off slack notifications based on your calendars or scheduling tools.
               </p>
             </div>
           </div>
@@ -32,7 +32,7 @@ const Features = () => {
             <div className="mt-5">
               <h5 className={`text-lg leading-6 font-medium ${theme.text.normal}`}>Reclaim your weekend</h5>
               <p className={`mt-2 text-base leading-6 ${theme.text.muted4}`}>
-                Use the simple predefined time slots to ensure your work doesn't intrude on your time off.
+                Use your calendar events to block notifications, so you can truly unplug or use our presets to get started.
               </p>
             </div>
           </div>
